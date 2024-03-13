@@ -1,11 +1,15 @@
 import { LitElement, html } from 'lit'
-import { customElement } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 
 
 
 @customElement('long-press-button')
 export class LongPressButton extends LitElement {
   #timeId: number = 0;
+
+  @property({ attribute: false }) onLongPress = () => {};
+
+  @property({ type: Number }) duration = 3000;
 
   render() {
     return html`
@@ -21,9 +25,8 @@ export class LongPressButton extends LitElement {
   
   #handleMouseDown() {
     this.#timeId = setTimeout(() => {
-      // ここに長押しした後に実行したい関数を記述
-      alert('長押しが検出されました！');
-    }, 3000); // 3000ミリ秒 = 3秒
+      this.onLongPress();
+    }, this.duration);
   }
 
   #handleMouseUp() {

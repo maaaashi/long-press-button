@@ -7,8 +7,14 @@
     <title>Vite + Lit + TS</title>
     <link rel="stylesheet" href="./src/index.css" />
     <script type="module" src="/src/long-press-button.ts"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const button = document.querySelector('long-press-button');
+        button.onLongPress = () => alert('外部から渡された関数が実行されました！');
+      });
+    </script>
   </head>
   <body>
-    <long-press-button>CLICK</long-press-button>
+    <long-press-button duration=1000>CLICK</long-press-button>
   </body>
 </html>
