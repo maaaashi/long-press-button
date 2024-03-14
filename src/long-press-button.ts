@@ -9,7 +9,9 @@ export class LongPressButton extends LitElement {
 
   @property({ type: Number }) duration = 3000;
 
-  @property({ type: String }) text = 'CLICK';
+  @property({ type: String }) text = 'Click';
+
+  @property({ type: String, attribute: 'holding-text' }) holdingText = 'HOLDING...';
 
   render() {
     return html`
@@ -31,6 +33,7 @@ export class LongPressButton extends LitElement {
       --color: #333;
       --border: 1px solid #111;
       --font-family: Arial, sans-serif;
+      --height: 40px;
     }
 
     button {
@@ -40,12 +43,13 @@ export class LongPressButton extends LitElement {
       color: var(--color);
       border: var(--border);
       font-family: var(--font-family);
+      height: var(--height);
       cursor: pointer;
     }
   `
   
   #handleMouseDown() {
-    this.text = 'HOLDING...';
+    this.text = this.holdingText;
     this.#timeId = setTimeout(() => {
       this.onLongPress();
     }, this.duration);
