@@ -3,15 +3,16 @@ import { customElement, property } from 'lit/decorators.js'
 
 @customElement('long-press-button')
 export class LongPressButton extends LitElement {
-  #timeId: number = 0;
+  #timeId: number = 0
 
-  @property({ attribute: false }) onLongPress = () => {};
+  @property({ attribute: false }) onLongPress = () => {}
 
-  @property({ type: Number }) duration = 3000;
+  @property({ type: Number }) duration = 3000
 
-  @property({ type: String }) text = 'Click';
+  @property({ type: String }) text = 'Click'
 
-  @property({ type: String, attribute: 'holding-text' }) holdingText = 'HOLDING...';
+  @property({ type: String, attribute: 'holding-text' }) holdingText =
+    'HOLDING...'
 
   render() {
     return html`
@@ -47,25 +48,25 @@ export class LongPressButton extends LitElement {
       cursor: pointer;
     }
   `
-  
+
   #handleMouseDown() {
-    this.text = this.holdingText;
+    this.text = this.holdingText
     this.#timeId = setTimeout(() => {
-      this.onLongPress();
-    }, this.duration);
+      this.onLongPress()
+    }, this.duration)
   }
-  
+
   #handleMouseUp() {
     this.#releaseButton()
   }
-  
+
   #handleMouseLeave() {
     this.#releaseButton()
   }
-  
+
   #releaseButton() {
-    this.text = this.attributes.getNamedItem('text')?.value || '';
-    clearTimeout(this.#timeId);  
+    this.text = this.attributes.getNamedItem('text')?.value || ''
+    clearTimeout(this.#timeId)
   }
 }
 

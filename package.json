@@ -1,18 +1,32 @@
 {
-  "name": "long-press-button",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@maaaashi/long-press-button",
+  "version": "0.0.1",
+  "description": "A long press button component",
   "type": "module",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maaaashi/long-press-button.git"
+  },
+  "homepage": "https://github.com/maaaashi/long-press-button.git",
+  "author": {
+    "name": "maaaashi",
+    "email": "ooka.ms.0r7e2p3@gmail.com"
+  },
+  "license": "MIT",
+  "main": "dist/bundle.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fmt": "biome format --write ./src"
   },
   "dependencies": {
     "lit": "^3.1.0",
     "vite-plugin-dts": "^3.7.3"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.6.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   }
