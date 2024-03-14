@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit'
+import { LitElement, css, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 
 
@@ -22,6 +22,27 @@ export class LongPressButton extends LitElement {
       </button>
     `
   }
+
+  static styles = css`
+    :host {
+      --padding: 5px 10px;
+      --border-radius: 5px;
+      --background-color: #f5f5f5;
+      --color: #333;
+      --border: 1px solid #111;
+      --font-family: Arial, sans-serif;
+    }
+
+    button {
+      padding: var(--padding);
+      border-radius: var(--border-radius);
+      background-color: var(--background-color);
+      color: var(--color);
+      border: var(--border);
+      font-family: var(--font-family);
+      cursor: pointer;
+    }
+  `
   
   #handleMouseDown() {
     this.#timeId = setTimeout(() => {
