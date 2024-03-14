@@ -1,8 +1,6 @@
 import { LitElement, css, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 
-
-
 @customElement('long-press-button')
 export class LongPressButton extends LitElement {
   #timeId: number = 0;
@@ -11,6 +9,8 @@ export class LongPressButton extends LitElement {
 
   @property({ type: Number }) duration = 3000;
 
+  @property({ type: String }) text = 'CLICK';
+
   render() {
     return html`
       <button
@@ -18,7 +18,7 @@ export class LongPressButton extends LitElement {
         @mouseup="${this.#handleMouseUp}"
         @mouseleave="${this.#handleMouseLeave}"
       >
-        <slot></slot>
+        ${this.text}
       </button>
     `
   }
@@ -45,17 +45,23 @@ export class LongPressButton extends LitElement {
   `
   
   #handleMouseDown() {
+    this.text = 'HOLDING...';
     this.#timeId = setTimeout(() => {
       this.onLongPress();
     }, this.duration);
   }
-
+  
   #handleMouseUp() {
-    clearTimeout(this.#timeId);
+    this.#releaseButton()
   }
-
+  
   #handleMouseLeave() {
-    clearTimeout(this.#timeId);
+    this.#releaseButton()
+  }
+  
+  #releaseButton() {
+    this.text = this.attributes.getNamedItem('text')?.value || '';
+    clearTimeout(this.#timeId);  
   }
 }
 
